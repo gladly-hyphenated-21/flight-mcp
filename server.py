@@ -52,6 +52,7 @@ mcp = FastMCP(
 # Helpers
 # ---------------------------------------------------------------------------
 
+
 def _parse_date(value: str, field: str) -> date:
     try:
         return date.fromisoformat(value)
@@ -138,6 +139,7 @@ def _summarize(flights: List[FlightInfo], max_results: int) -> Dict[str, Any]:
 # ---------------------------------------------------------------------------
 # Tools
 # ---------------------------------------------------------------------------
+
 
 @mcp.tool
 def find_flights_to_europe(
@@ -282,7 +284,7 @@ def list_european_countries() -> List[str]:
 # ASGI app — Natoma's Procfile points uvicorn at `application`.
 # ---------------------------------------------------------------------------
 
-application = mcp.streamable_http_app(path="/mcp")
+application = mcp.http_app(path="/mcp", transport="http")
 
 
 if __name__ == "__main__":
